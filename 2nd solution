@@ -1,0 +1,51 @@
+#include <iostream>
+#include <fstream>
+#include <unordered_map>
+#include <queue>
+#include <vector>
+
+using namespace std;
+
+int main() {
+
+    ifstream file("words.txt");
+    unordered_map<string, int> freq;
+    string word;
+
+    // Step 1: Count word frequencies
+    while (getline(file, word)) {
+        if (!word.empty())
+            freq[word]++;
+    }
+    file.close();
+
+    // Step 2: Min heap for top 10
+    priority_queue<
+        pair<int,string>,
+        vector<pair<int,string>>,
+        greater<pair<int,string>>
+    > minHeap;
+
+    for (auto &p : freq) {
+        minHeap.push({p.second, p.first});
+
+        if (minHeap.size() > 10)
+            minHeap.pop();
+    }
+
+    // Step 3: Print results
+    vector<pair<int,string>> result;
+
+    while (!minHeap.empty()) {
+        result.push_back(minHeap.top());
+        minHeap.pop();
+    }
+
+    reverse(result.begin(), result.end());
+
+    for (auto &p : result) {
+        cout << p.second << " " << p.first << endl;
+    }
+
+    return 0;
+}
