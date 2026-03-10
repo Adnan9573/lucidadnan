@@ -87,4 +87,39 @@ Since K = 10, overall complexity ≈ O(N)
 
 ****************************************************************************
 
+3rd solution approach
+
+Approach
+
+Read the log file line-by-line using getline() to handle large files efficiently.
+
+Parse each line into timestamp, user, and action using stringstream.
+
+2. Data Aggregation
+
+Use unordered_map<string,int> to count:
+
+User actions (userCount)
+
+Action frequency (actionCount)
+
+3. Tracking Maximum
+
+While updating counts, track:
+
+User with highest action count
+
+Most frequent action
+
+4. Output
+
+Print the most active user and most common action
+
+''''Key Features
+
+- Single Pass: Processes logs in one pass, reducing I/O overhead.
+- Efficient Hash Maps: Uses hash sets for fast lookup and insertion (O(1) average case).
+- Scalable: Handles large log files with minimal memory overhead.
+- Simple and Readable: Easy-to-understand code with clear logic.
+.''''
 
