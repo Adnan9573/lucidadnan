@@ -1,0 +1,11 @@
+def find_duplicates_sorted(file_path):
+    prev = None
+
+    with open(file_path, 'r') as file:
+        for line in file:
+            email = line.strip()
+
+            if email == prev:
+                print("Duplicate:", email)
+
+            prev = email
