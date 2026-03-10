@@ -45,3 +45,46 @@ This approach efficiently handles large email datasets with minimal memory overh
 ******************************************************************************************************************************
 
 2nd solution approach
+
+Approach
+
+Read the file line by line using getline() to handle large files efficiently.
+
+Use an unordered_map<string,int> to count how many times each word appears.
+
+Each word read from the file increments its count in the map.
+
+2. Finding Top 10 Words
+
+Use a min-heap (priority_queue) of size 10.
+
+Insert each (frequency, word) pair into the heap.
+
+If the heap size becomes greater than 10, remove the smallest element.
+
+This ensures the heap always keeps the 10 most frequent words.
+
+3. Output
+
+Move heap elements into a vector.
+
+Sort them in descending order of frequency.
+
+Print output as: word frequency
+Data Structures Used
+
+unordered_map → for fast frequency counting (O(1) average lookup)
+
+priority_queue → to maintain top 10 frequent words efficiently
+
+5. Time Complexity
+
+Reading file and counting words: O(N)
+
+Heap operations: O(U log K)
+
+Since K = 10, overall complexity ≈ O(N)
+
+****************************************************************************
+
+
