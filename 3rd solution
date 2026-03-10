@@ -1,0 +1,52 @@
+#include <iostream>
+#include <fstream>
+#include <unordered_map>
+#include <sstream>
+
+using namespace std;
+
+int main() {
+
+    ifstream file("logs.txt");
+    string line;
+
+    unordered_map<string, int> userCount;
+    unordered_map<string, int> actionCount;
+
+    string mostActiveUser;
+    string mostCommonAction;
+
+    int maxUserCount = 0;
+    int maxActionCount = 0;
+
+    while (getline(file, line)) {
+
+        stringstream ss(line);
+        string timestamp, user, action;
+
+        getline(ss, timestamp, ',');
+        getline(ss, user, ',');
+        getline(ss, action, ',');
+
+        // Count user actions
+        int uCount = ++userCount[user];
+        if (uCount > maxUserCount) {
+            maxUserCount = uCount;
+            mostActiveUser = user;
+        }
+
+        // Count action occurrences
+        int aCount = ++actionCount[action];
+        if (aCount > maxActionCount) {
+            maxActionCount = aCount;
+            mostCommonAction = action;
+        }
+    }
+
+    file.close();
+
+    cout << "Most Active User: " << mostActiveUser << endl;
+    cout << "Most Common Action: " << mostCommonAction << endl;
+
+    return 0;
+}
